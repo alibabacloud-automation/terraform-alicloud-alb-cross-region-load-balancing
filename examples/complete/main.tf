@@ -24,7 +24,6 @@ data "alicloud_zones" "region1" {
 data "alicloud_zones" "region2" {
   provider                    = alicloud.region2
   available_resource_creation = "VSwitch"
-  available_instance_type     = data.alicloud_instance_types.region2.ids[0]
 }
 
 data "alicloud_zones" "region3" {
@@ -42,6 +41,7 @@ data "alicloud_instance_types" "region1" {
 
 data "alicloud_instance_types" "region2" {
   provider             = alicloud.region2
+  availability_zone    = data.alicloud_zones.region2.zones[0].id
   system_disk_category = var.system_disk_category
   instance_type_family = "ecs.c9i"
 }
