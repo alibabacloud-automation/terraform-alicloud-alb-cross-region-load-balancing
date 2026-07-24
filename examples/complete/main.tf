@@ -41,7 +41,7 @@ data "alicloud_instance_types" "region1" {
 
 data "alicloud_instance_types" "region2" {
   provider             = alicloud.region2
-  availability_zone    = data.alicloud_zones.region2.zones[0].id
+  availability_zone    = data.alicloud_zones.region2.zones[length(data.alicloud_zones.region2.zones) - 1].id
   system_disk_category = var.system_disk_category
   instance_type_family = "ecs.c9i"
 }
